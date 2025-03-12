@@ -14,8 +14,6 @@ Este projeto tem como objetivo consumir um web service para buscar informações
 ## Tecnologias Utilizadas
 - **Java** (versão 8 ou superior)
 - **Maven** (para gerenciamento de dependências)
-- **JDBC** (para conexão com o banco de dados)
-- **H2 Database** (para armazenamento local das consultas)
 - **REST API - ViaCEP** (https://viacep.com.br/)
 
 ## Instalação e Execução
