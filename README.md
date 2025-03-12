@@ -1,33 +1,58 @@
 # Consulta de Endereço via CEP
 
 ## Objetivo
-Este projeto tem como objetivo consumir um web service para buscar informações de endereço a partir de um CEP informado pelo usuário. Além disso, o sistema armazena os resultados em um banco de dados, garantindo que consultas futuras ao mesmo CEP sejam feitas localmente, otimizando o tempo de resposta.
-
-## Fluxo do Programa
-1. O sistema solicita um CEP ao usuário.
-2. Verifica no banco de dados se o CEP já foi consultado anteriormente.
-3. Se o CEP existir no banco, exibe as informações para o usuário.
-4. Se o CEP não existir no banco, busca os dados na API ViaCEP.
-5. Os dados do endereço e a data/hora da consulta são salvos no banco.
-6. O sistema informa ao usuário que a busca foi realizada via API e que os dados foram armazenados para futuras consultas.
+Este projeto tem como objetivo desenvolver um sistema de consulta de endereços através de CEP, utilizando a API ViaCEP. O sistema oferece uma interface de linha de comando que permite aos usuários consultarem informações detalhadas de endereços a partir de um CEP. Para otimizar o desempenho e reduzir o número de requisições à API externa, o sistema implementa um mecanismo de cache local utilizando banco de dados, armazenando os resultados de consultas anteriores.
 
 ## Tecnologias Utilizadas
 - **Java** (versão 8 ou superior)
 - **Maven** (para gerenciamento de dependências)
+- **PostgreSQL** (banco de dados para armazenamento local)
+- **OkHttp** (cliente HTTP para consumo da API)
+- **Jackson** (para serialização/deserialização de JSON)
 - **REST API - ViaCEP** (https://viacep.com.br/)
 
-## Instalação e Execução
+## Como Executar o Projeto
+
+### Pré-requisitos
+- JDK 8 ou superior instalado
+- Maven instalado
+- PostgreSQL instalado e configurado
+
+### Passo a Passo
+
 1. Clone este repositório:
    ```sh
-   git clone https://github.com/seu-repositorio/consulta-cep.git
+   git clone https://github.com/seu-usuario/consomeCepFernando.git
    ```
+
 2. Acesse a pasta do projeto:
    ```sh
-   cd consulta-cep
+   cd consomeCepFernando
    ```
-3. Compile e execute o projeto com Maven:
+
+3. Configure o banco de dados:
+   - Crie um banco de dados PostgreSQL
+   - Atualize as configurações de conexão no arquivo `application.properties`
+
+4. Compile o projeto:
    ```sh
    mvn clean install
-   mvn exec:java -Dexec.mainClass="com.exemplo.cep.Main"
    ```
+
+5. Execute o programa:
+   ```sh
+   mvn exec:java -Dexec.mainClass="br.unipar.programacaoweb.Main"
+   ```
+
+### Funcionalidades
+- Consulta de endereços por CEP
+- Armazenamento automático dos resultados em banco de dados
+- Validação de formato do CEP
+- Exibição formatada das informações do endereço
+- Cache local para consultas repetidas
+
+### Observações
+- O sistema aceita apenas CEPs no formato de 8 dígitos
+- Consultas a CEPs já pesquisados são respondidas instantaneamente através do banco de dados local
+- Novas consultas são realizadas através da API ViaCEP e automaticamente armazenadas
 
